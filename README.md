@@ -1,50 +1,53 @@
-# React + TypeScript + Vite
+# Modern Weather APP In REACT & TypeScript 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview  
+This project is a modern weather application built using React.js and TypeScript, powered by the OpenWeather API. It provides real-time weather updates, allows you to search for global cities, and displays detailed 24-hour forecasts. Designed with a focus on performance and user experience, the app features a clean UI and seamless responsiveness across all devices.  
 
-Currently, two official plugins are available:
+## Features  
+- 🌍 **Real-Time Weather**: Displays current weather data for your location using the OpenWeather API.  
+- 🔍 **City Search**: Search for and view weather information for cities worldwide.  
+- ⏱️ **24-Hour Forecast**: Provides detailed hourly weather forecasts.  
+- 🌑 **Dark Mode**: Offers a light/dark mode toggle for an enhanced user experience.  
+- 💾 **Favorites**: Save your favorite cities for quick access to their weather data.  
+- 📱 **Responsive Design**: Optimized for desktops, tablets, and mobile devices.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack  
+- **React.js**: A powerful library for building dynamic user interfaces.  
+- **TypeScript**: Adds type safety to enhance maintainability and reduce runtime errors.  
+- **TanStack Query**: Simplifies state management, data fetching, and caching.  
+- **Shad CN UI**: Provides modular and elegant UI components for a polished design.  
+- **OpenWeather API**: Supplies accurate weather data and forecasts for the app.
 
-## Expanding the ESLint configuration
+<!-- Main Dashboard Image -->
+## APP Dashboard
+<img src="public/assets/localhost_5173_.png" alt="App Dashboard Screenshot" width="800">
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<!-- City Search and City Page Screenshots -->
+## City Search and Favorites
 
-- Configure the top-level `parserOptions` property like this:
+### City Search Functionality
+<img src="public/assets/localhost_5173_city_New%2520York_lat=40.7128&lon=-74.006 (1).png" alt="App Screenshot - City Search" width="800">
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### City Page and Add to Favorites Functionality
+<img src="public/assets/localhost_5173_city_New%2520York_lat=40.7128&lon=-74.006.png" alt="App Screenshot - City Page" width="800">
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+<!-- Responsive Design Across Devices -->
+## Responsive Design Across Devices
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Desktop Version (Light)
+  <img src="public/assets/localhost_5173_ (1).png" alt="App Screenshot - Desktop Light Mode" width="600">
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Desktop Version (Dark)
+  <img src="public/assets/localhost_5173_ (2).png" alt="App Screenshot - Desktop Dark Mode" width="600">
+
+### Tablet Version (Light)
+  <img src="public/assets/localhost_5173_(iPad Pro).png" alt="App Screenshot - Tablet Light Mode" width="300">
+
+### Tablet Version (Dark)  
+  <img src="public/assets/localhost_5173_(iPad Pro) (2).png" alt="App Screenshot - Tablet Dark Mode" width="300">
+
+### Phone Version (Light)
+  <img src="public/assets/localhost_5173_(iPhone 14 Pro Max).png" alt="App Screenshot - Phone Light Mode" width="200">
+
+### Phone Version (Dark)  
+  <img src="public/assets/localhost_5173_(iPhone 14 Pro Max) (1).png" alt="App Screenshot - Phone Dark Mode" width="200">
