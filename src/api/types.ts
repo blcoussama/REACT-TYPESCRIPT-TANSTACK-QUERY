@@ -31,7 +31,9 @@ export interface WeatherData {
       country: string
     },
     name: string,
-    dt: number
+    dt: number,
+    /** Shift in seconds from UTC for the city. */
+    timezone: number
 }
   
 
@@ -47,7 +49,9 @@ export interface ForecastData {
         name: string,
         country: string,
         sunrise: number,
-        sunset: number
+        sunset: number,
+        /** Shift in seconds from UTC for the city. */
+        timezone: number
     },
 }
 

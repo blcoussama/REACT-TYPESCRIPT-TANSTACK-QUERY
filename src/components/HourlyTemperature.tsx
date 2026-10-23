@@ -7,7 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts"
-import { format } from "date-fns"
+import { formatCityHour } from "@/lib/time"
 import type { ForecastData } from "@/api/types"
 
 interface HourlyTemperatureProps {
@@ -26,7 +26,7 @@ export function HourlyTemperature({ data }: HourlyTemperatureProps) {
   const chartData: ChartData[] = data.list
     .slice(0, 8) // Get next 24 hours (3-hour intervals)
     .map((item) => ({
-      time: format(new Date(item.dt * 1000), "ha"),
+      time: formatCityHour(item.dt, data.city.timezone),
       temp: Math.round(item.main.temp),
       feels_like: Math.round(item.main.feels_like),
     }));

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Sunrise, Sunset, Compass, Gauge } from "lucide-react";
-import { format } from "date-fns";
+import { formatCityTime } from "@/lib/time";
 import type { WeatherData } from "@/api/types";
 
 interface WeatherDetailsProps {
@@ -8,12 +8,10 @@ interface WeatherDetailsProps {
 }
 
 export function WeatherDetails({ data }: WeatherDetailsProps) {
-  const { wind, main, sys } = data;
+  const { wind, main, sys, timezone } = data;
 
-  // Format time using date-fns
-  const formatTime = (timestamp: number) => {
-    return format(new Date(timestamp * 1000), "h:mm a");
-  };
+  // Sunrise and sunset in the city's local time, not the browser's.
+  const formatTime = (timestamp: number) => formatCityTime(timestamp, timezone);
 
   // Convert wind degree to direction
   const getWindDirection = (degree: number) => {
