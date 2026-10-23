@@ -105,3 +105,5 @@ export function HourlyTemperature({ data }: HourlyTemperatureProps) {
     </Card>
   );
 }
+
+export default HourlyTemperature;

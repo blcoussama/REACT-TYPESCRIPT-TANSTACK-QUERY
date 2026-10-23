@@ -3,7 +3,7 @@ import { FALLBACK_LOCATION } from "@/api/config"
 import type { GeoCodingResponse } from "@/api/types"
 import { CurrentWeather } from "@/components/CurrentWeather"
 import { FavoriteCities } from "@/components/FavoriteCities"
-import { HourlyTemperature } from "@/components/HourlyTemperature"
+import { LazyHourlyTemperature } from "@/components/LazyHourlyTemperature"
 import WeatherSkeleton from "@/components/LoadingSkeleton"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -121,7 +121,7 @@ const WeatherDashboard = () => {
       <div className="grid gap-6">
         <div className="flex flex-col xl:flex-row gap-4">
           <CurrentWeather data={weatherQuery.data} locationName={locationName} />
-          <HourlyTemperature data={forecastQuery.data} />
+          <LazyHourlyTemperature data={forecastQuery.data} />
         </div>
 
         <div className="grid gap-6 xl:grid-cols-2 items-start">

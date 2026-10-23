@@ -7,13 +7,13 @@ import { useForecastQuery, useWeatherQuery } from "@/hooks/UseWeather";
 import WeatherSkeleton from "@/components/LoadingSkeleton";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { CurrentWeather } from "@/components/CurrentWeather";
-import { HourlyTemperature } from "@/components/HourlyTemperature";
+import { LazyHourlyTemperature } from "@/components/LazyHourlyTemperature";
 import { WeatherDetails } from "@/components/WeatherDetails";
 import { WeatherForecast } from "@/components/WeatherForecast";
 import { WeatherErrorAlert } from "@/components/WeatherErrorAlert";
 
 
-export function CityPage() {
+export default function CityPage() {
   const [searchParams] = useSearchParams();
   const params = useParams();
   // null when ?lat=&lon= are missing or invalid: no request is sent then.
@@ -74,7 +74,7 @@ export function CityPage() {
             {/* current weather */}
             <CurrentWeather data={weatherQuery.data} />
             {/* hourly temperature */}
-            <HourlyTemperature data={forecastQuery.data} />
+            <LazyHourlyTemperature data={forecastQuery.data} />
           </div>
           
           <div className="grid gap-6 xl:grid-cols-2 items-start">
