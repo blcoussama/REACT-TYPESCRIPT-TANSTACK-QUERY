@@ -31,10 +31,14 @@ export function useReverseQuery(coordinates:Coordinates | null) {
     })
 }
 
+/** The geocoding API is only called from this many characters. */
+export const MIN_SEARCH_LENGTH = 3
+
 export function useLocationSearch(query:string) {
+    const trimmed = query.trim()
     return useQuery({
-        queryKey: WEATHER_KEYS.search(query),
-        queryFn: () => weatherAPI.searchLocations(query),
-        enabled: query.length >= 3
+        queryKey: WEATHER_KEYS.search(trimmed),
+        queryFn: () => weatherAPI.searchLocations(trimmed),
+        enabled: trimmed.length >= MIN_SEARCH_LENGTH
     })
 }
