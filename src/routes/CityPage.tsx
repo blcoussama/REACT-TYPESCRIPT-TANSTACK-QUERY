@@ -1,6 +1,4 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertTriangle } from "lucide-react";
 import { useForecastQuery, useWeatherQuery } from "@/hooks/UseWeather";
 import WeatherSkeleton from "@/components/LoadingSkeleton";
 import { FavoriteButton } from "@/components/FavouritesButton";
@@ -8,6 +6,7 @@ import { CurrentWeather } from "@/components/CurrentWeather";
 import { HourlyTemperature } from "@/components/HourlyTemperature";
 import { WeatherDetails } from "@/components/WeatherDetails";
 import { WeatherForecast } from "@/components/WeatherForecast";
+import { WeatherErrorAlert } from "@/components/WeatherErrorAlert";
 
 
 export function CityPage() {
@@ -23,12 +22,13 @@ export function CityPage() {
 
   if (weatherQuery.error || forecastQuery.error) {
     return (
-      <Alert variant="destructive">
-        <AlertTriangle className="h-4 w-4" />
-        <AlertDescription>
-          Failed to load weather data. Please try again.
-        </AlertDescription>
-      </Alert>
+      <WeatherErrorAlert
+        error={weatherQuery.error ?? forecastQuery.error}
+        onRetry={() => {
+          weatherQuery.refetch();
+          forecastQuery.refetch();
+        }}
+      />
     );
   }
 

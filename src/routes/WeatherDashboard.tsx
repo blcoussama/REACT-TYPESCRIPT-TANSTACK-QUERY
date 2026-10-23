@@ -5,6 +5,7 @@ import { FavoriteCities } from "@/components/FavoriteCities"
   import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
   import { Button } from "@/components/ui/button"
   import { WeatherDetails } from "@/components/WeatherDetails"
+  import { WeatherErrorAlert } from "@/components/WeatherErrorAlert"
   import { WeatherForecast } from "@/components/WeatherForecast"
   import { useGeoLocation } from "@/hooks/UseGeoLocation"
   import { useForecastQuery, useReverseQuery, useWeatherQuery } from "@/hooks/UseWeather"
@@ -69,19 +70,7 @@ import { FavoriteCities } from "@/components/FavoriteCities"
     const locationname = locationQuery.data?.[0]
 
     if(weatherQuery.error || forecastQuery.error) {
-      return (
-      <Alert variant="destructive">
-          <AlertTriangle className="h-5 w-5" />
-          <AlertTitle className="text-xl">Error</AlertTitle>
-          <AlertDescription className="flex flex-col gap-4 text-base sm:text-lg">
-            <p>Failed to fetch weather data pls try again!</p>
-            <Button variant="outline" onClick={handleRefresh} className="w-fit text-lg">
-              <RefreshCw className="h-8 w-8" />
-              Retry
-            </Button>
-          </AlertDescription>
-        </Alert>
-      )
+      return <WeatherErrorAlert error={weatherQuery.error ?? forecastQuery.error} onRetry={handleRefresh} />
     }
 
     if(!weatherQuery.data || !forecastQuery.data) {

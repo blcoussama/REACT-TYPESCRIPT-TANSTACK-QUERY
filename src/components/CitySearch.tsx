@@ -16,13 +16,14 @@ import {
 } from "@/components/ui/command"
 import { Button } from "@/components/ui/button"
 import { UseFavorites } from "@/hooks/UseFavorites"
+import { getErrorMessage } from "@/lib/errors"
 
 export function CitySearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const { data: locations, isLoading } = useLocationSearch(query);
+  const { data: locations, isLoading, error: searchError } = useLocationSearch(query);
   const { favorites } = UseFavorites();
   const { history, clearHistory, addToHistory } = useSearchHistory();
 
@@ -61,7 +62,12 @@ export function CitySearch() {
             onValueChange={setQuery}
           />
           <CommandList>
-            {query.length > 2 && !isLoading && (
+            {searchError && (
+              <p role="alert" className="px-4 py-6 text-center text-sm text-destructive">
+                {getErrorMessage(searchError)}
+              </p>
+            )}
+            {query.length > 2 && !isLoading && !searchError && (
               <CommandEmpty>No cities found.</CommandEmpty>
             )}
 
