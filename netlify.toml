@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app: /city/... deep links are served by index.html
+# (existing files such as /assets/* are served first).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
