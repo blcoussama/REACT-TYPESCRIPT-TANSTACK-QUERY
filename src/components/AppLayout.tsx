@@ -5,7 +5,7 @@ import { LOGO_URL } from '@/lib/assets'
 
 const AppLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div className='w-s bg-gradient-to-bl from-background to-muted'>
+    <div className='bg-gradient-to-bl from-background to-muted'>
         <Header/>
         <main className='flex items-center justify-center min-h-screen mx-auto px-2 s:px-8 sm:px-12 py-8'>
             {children}

@@ -22,21 +22,24 @@ export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
       <CardContent className="p-8">
         <div className="grid gap-6 md:grid-cols-2">
           <div className="space-y-4">
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <h2 className=" text-2xl md:text-3xl font-bold tracking-tight">
-                  {locationName?.name}
-                </h2>
-                {locationName?.state && (
-                  <span className="text-muted-foreground">
-                    , {locationName.state}
-                  </span>
-                )}
+            {/* The city page already shows the name in its <h1>. */}
+            {locationName && (
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+                    {locationName.name}
+                  </h3>
+                  {locationName.state && (
+                    <span className="text-muted-foreground">
+                      , {locationName.state}
+                    </span>
+                  )}
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  {locationName.country}
+                </p>
               </div>
-              <p className="text-lg text-muted-foreground">
-                {locationName?.country}
-              </p>
-            </div>
+            )}
 
             <div className="flex items-center justify-start gap-8 md:gap-10 lg:gap-8">
               <p className="text-7xl font-bold tracking-tighter">

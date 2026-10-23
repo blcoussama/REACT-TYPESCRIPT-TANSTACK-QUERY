@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { parseCoordinates } from "@/lib/routes";
 import { useForecastQuery, useWeatherQuery } from "@/hooks/UseWeather";
 import WeatherSkeleton from "@/components/LoadingSkeleton";
-import { FavoriteButton } from "@/components/FavouritesButton";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { CurrentWeather } from "@/components/CurrentWeather";
 import { HourlyTemperature } from "@/components/HourlyTemperature";
 import { WeatherDetails } from "@/components/WeatherDetails";

@@ -90,7 +90,7 @@ interface FavoriteCityTabletProps {
     return (
       <>
       <div className="space-y-4">
-        <h1 className="text-xl lg:text-2xl font-bold tracking-tight ml-4">Favorites</h1>
+        <h2 className="text-xl lg:text-2xl font-bold tracking-tight ml-4">Favorites</h2>
         <div className="w-full overflow-x-auto hide-scrollbar">
           <div className="flex gap-4 pb-2">
             {favorites.map((city) => (
