@@ -95,7 +95,15 @@ export function CitySearch() {
         <Search className="mr-2 h-6 w-6" />
         Search cities...
       </Button>
-      <Search className="flex md:hidden mr-2 h-6 w-6" onClick={() => setOpen(true)} />
+      <Button
+        variant="ghost"
+        size="icon"
+        className="md:hidden [&_svg]:size-6"
+        onClick={() => setOpen(true)}
+        aria-label="Search cities"
+      >
+        <Search aria-hidden="true" />
+      </Button>
       <CommandDialog
         open={open}
         onOpenChange={setOpen}

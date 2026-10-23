@@ -32,10 +32,14 @@ export function FavoriteButton({ data }: FavoriteButtonProps) {
       variant={isCurrentlyFavorite ? "default" : "outline"}
       size="icon"
       onClick={handleToggleFavorite}
+      aria-label={`Favorite ${data.name}`}
+      aria-pressed={isCurrentlyFavorite}
+      title={isCurrentlyFavorite ? "Remove from favorites" : "Add to favorites"}
       className={isCurrentlyFavorite ? "bg-yellow-500 hover:bg-yellow-600" : ""}
     >
       <Star
         className={`h-4 w-4 ${isCurrentlyFavorite ? "fill-current" : ""}`}
+        aria-hidden="true"
       />
     </Button>
   );
