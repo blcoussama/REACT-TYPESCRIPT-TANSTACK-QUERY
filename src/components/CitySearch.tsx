@@ -29,15 +29,15 @@ interface CityOption {
   state?: string
 }
 
+// One element: the flex gap of CommandItem would otherwise add a space before each comma.
 function CityLabel({ city }: { city: CityOption }) {
   return (
-    <>
-      <span>{city.name}</span>
-      {city.state && (
-        <span className="text-sm text-muted-foreground">, {city.state}</span>
-      )}
-      <span className="text-sm text-muted-foreground">, {city.country}</span>
-    </>
+    <span>
+      {city.name}
+      <span className="text-sm text-muted-foreground">
+        {city.state && `, ${city.state}`}, {city.country}
+      </span>
+    </span>
   )
 }
 
