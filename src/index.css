@@ -67,24 +67,7 @@
 
 .logo {
   width: 3.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  filter: drop-shadow(0 0 16px #61dafb); /* Enhanced multi-layered glow */
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+  filter: drop-shadow(0 0 10px rgb(251 191 36 / 0.45));
 }
 
 .hide-scrollbar {

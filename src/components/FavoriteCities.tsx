@@ -4,6 +4,7 @@ import { Button } from "./ui/button"
 import { toast } from "sonner"
 import { Loader2, X } from "lucide-react"
 import { UseFavorites } from "@/hooks/UseFavorites"
+import { cityPath } from "@/lib/routes"
 interface FavoriteCityTabletProps {
     id: string;
     name: string;
@@ -23,7 +24,7 @@ interface FavoriteCityTabletProps {
     const { data: weather, isLoading } = useWeatherQuery({ lat, lon });
   
     const handleClick = () => {
-      navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
+      navigate(cityPath({ name, lat, lon }));
     };
   
     return (

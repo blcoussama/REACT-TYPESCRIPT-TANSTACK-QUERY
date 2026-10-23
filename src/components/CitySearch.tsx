@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { UseFavorites } from "@/hooks/UseFavorites"
 import { getErrorMessage } from "@/lib/errors"
+import { cityPath } from "@/lib/routes"
 
 export function CitySearch() {
   const [open, setOpen] = useState(false);
@@ -40,7 +41,7 @@ export function CitySearch() {
     });
 
     setOpen(false);
-    navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
+    navigate(cityPath({ name, lat: parseFloat(lat), lon: parseFloat(lon) }));
   };
 
   return (

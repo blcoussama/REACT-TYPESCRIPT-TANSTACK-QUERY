@@ -9,11 +9,16 @@ import { FavoriteCities } from "@/components/FavoriteCities"
   import { WeatherForecast } from "@/components/WeatherForecast"
   import { useGeoLocation } from "@/hooks/UseGeoLocation"
   import { useForecastQuery, useReverseQuery, useWeatherQuery } from "@/hooks/UseWeather"
-  import { AlertTriangle, MapPin, RefreshCw } from "lucide-react"
+  import { MapPin, RefreshCw } from "lucide-react"
+  import { FALLBACK_LOCATION } from "@/api/config"
   const WeatherDashboard = () => {
 
     const { locationData, getLocation } = useGeoLocation()
-    const { coordinates, error:locationError, isLoading:locationLoading } = locationData
+    const { coordinates: userCoordinates, error:locationError, isLoading:locationLoading } = locationData
+
+    // Geolocation refused or unavailable: show a default city instead of a blank page.
+    const usingFallback = !userCoordinates && !!locationError
+    const coordinates = userCoordinates ?? (usingFallback ? { lat: FALLBACK_LOCATION.lat, lon: FALLBACK_LOCATION.lon } : null)
 
     const weatherQuery = useWeatherQuery(coordinates)
     console.log(weatherQuery);
@@ -33,22 +38,6 @@ import { FavoriteCities } from "@/components/FavoriteCities"
 
     if(locationLoading) {
       return <WeatherSkeleton />
-    }
-
-    if(locationError) {
-      return (
-        <Alert variant="destructive">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Location Error</AlertTitle>
-          <AlertDescription className="flex flex-col gap-4">
-            <p>{locationError}</p>
-            <Button variant="outline" onClick={getLocation} className="w-fit">
-              <MapPin className="mr-2 h-4 w-4" />
-              Enable Location
-            </Button>
-          </AlertDescription>
-        </Alert>
-      );
     }
 
     if(!coordinates) {
@@ -83,8 +72,22 @@ import { FavoriteCities } from "@/components/FavoriteCities"
         {/* Favorite Cities */}
           <FavoriteCities />
 
+        {usingFallback && (
+          <Alert role="status" className="mx-4 w-auto">
+            <MapPin className="h-4 w-4" />
+            <AlertTitle>Showing {FALLBACK_LOCATION.name} instead of your location</AlertTitle>
+            <AlertDescription className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p>{locationError} Search any city above, or allow location access and try again.</p>
+              <Button variant="outline" size="sm" onClick={getLocation} className="w-fit shrink-0">
+                <MapPin className="h-4 w-4" />
+                Use my location
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+
         <div className="flex items-center justify-between px-4">
-          <h1 className="text-xl lg:text-2xl font-bold tracking-tight">My Location</h1>
+          <h1 className="text-xl lg:text-2xl font-bold tracking-tight">{usingFallback ? "Default City" : "My Location"}</h1>
           <Button variant={"outline"} size={"icon"} onClick={handleRefresh} disabled={ weatherQuery.isFetching || forecastQuery.isFetching}>
             <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching?"animate-spin":""}`} />
           </Button>
