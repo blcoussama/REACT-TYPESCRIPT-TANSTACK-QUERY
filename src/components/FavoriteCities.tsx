@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Button } from "./ui/button"
 import { toast } from "sonner"
 import { Loader2, X } from "lucide-react"
-import { UseFavorites } from "@/hooks/UseFavorites"
+import { useFavorites } from "@/hooks/UseFavorites"
 import { cityPath } from "@/lib/routes"
 interface FavoriteCityTabletProps {
     id: string;
@@ -81,7 +81,7 @@ interface FavoriteCityTabletProps {
   }
   
   export function FavoriteCities() {
-    const { favorites, removeFavorite } = UseFavorites();
+    const { favorites, removeFavorite } = useFavorites();
   
     if (!favorites.length) {
       return null;
@@ -97,7 +97,7 @@ interface FavoriteCityTabletProps {
               <FavoriteCityTablet
                 key={city.id}
                 {...city}
-                onRemove={() => removeFavorite.mutate(city.id)}
+                onRemove={removeFavorite}
               />
             ))}
           </div>

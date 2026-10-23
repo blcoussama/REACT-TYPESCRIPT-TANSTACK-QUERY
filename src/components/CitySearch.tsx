@@ -15,7 +15,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { Button } from "@/components/ui/button"
-import { UseFavorites } from "@/hooks/UseFavorites"
+import { useFavorites } from "@/hooks/UseFavorites"
 import { getErrorMessage } from "@/lib/errors"
 import { cityPath } from "@/lib/routes"
 
@@ -25,7 +25,7 @@ export function CitySearch() {
   const navigate = useNavigate();
 
   const { data: locations, isLoading, error: searchError } = useLocationSearch(query);
-  const { favorites } = UseFavorites();
+  const { favorites } = useFavorites();
   const { history, clearHistory, addToHistory } = useSearchHistory();
 
   const handleSelect = (cityData: string) => {
